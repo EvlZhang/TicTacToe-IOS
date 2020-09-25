@@ -80,54 +80,54 @@ class move{
         }
         return false;
     }
-    func pChoice(num:Int){
+    func pChoice(num:Int,turn:Int){
         if(num==1){
             if(board[0][0]==0){
-                board[0][0]=1
+                board[0][0]=turn
             }
             
         }
         else if(num==2){
             if(board[0][1]==0){
-                board[0][1]=1
+                board[0][1]=turn
             }
         }
         else if(num==3){
             if(board[0][2]==0){
-                board[0][2]=1
+                board[0][2]=turn
             }
         }
         else if(num==4){
             if(board[1][0]==0){
-                board[1][0]=1
+                board[1][0]=turn
             }
         }
         else if(num==5){
             if(board[1][1]==0){
-                board[1][1]=1
+                board[1][1]=turn
             }
         }
         else if(num==6){
             if(board[1][2]==0){
-                board[1][2]=1
+                board[1][2]=turn
             }
         }
         else if(num==7){
             if(board[2][0]==0){
-                board[2][0]=1
+                board[2][0]=turn
             }
         }
         else if(num==8){
             if(board[2][1]==0){
-                board[2][1]=1
+                board[2][1]=turn
             }
         }
         else if(num==9){
             if(board[2][2]==0){
-                board[2][2]=1
+                board[2][2]=turn
             }
         }
-        turn=ai
+        //turn=ai
         isMaximizing=true
         //print(board)
         

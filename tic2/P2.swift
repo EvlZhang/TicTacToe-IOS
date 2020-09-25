@@ -1,41 +1,35 @@
 //
-//  NameViewController.swift
+//  P2.swift
 //  tic2
 //
-//  Created by Evelyn Zhang on 9/20/20.
+//  Created by Evelyn Zhang on 9/24/20.
 //
 
 import UIKit
 
-class NameViewController: UIViewController {
-    var isTwo=false;
-    @IBOutlet weak var uName: UITextField!
-    
-    @IBOutlet weak var p2Labe: UILabel!
-    @IBOutlet weak var u2Name: UITextField!
-    @IBAction func Play(_ sender: Any) {
-    }
-    @IBAction func p2Click(_ sender: UIButton) {
- 
-        
-        print(2)
-    }
-    @IBAction func p1Click(_ sender: Any) {
+class P2: UIViewController {
 
-        print(1)
-    }
+    @IBOutlet weak var uName: UITextField!
+    let tap=UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:)))
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if let controller = segue.destination as? ViewController{
             controller.playerName = uName.text
-            controller.player2Name=u2Name.text
-            controller.isTwo=true
+            
+            controller.isTwo=false
             }
             
+        
         }
     
-    
+    func textFieldShouldReturn(_ textField:UITextField)-> Bool{
+        textField.resignFirstResponder()
+        self.view.endEditing(true)
+        return true;
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addGestureRecognizer(tap)
         
         // Do any additional setup after loading the view.
     }

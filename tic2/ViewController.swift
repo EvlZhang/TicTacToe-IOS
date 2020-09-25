@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     var col2=UIStackView()
     var col3=UIStackView()
     var big=UIStackView()
-    var pturn=true
+    var pturn=1
     var game:move=move()
     var list=[UIImageView]()
     var currMove=0
@@ -56,9 +56,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var ocol3: UIStackView!
     @IBOutlet weak var playerScore: UILabel!
     
+    @IBOutlet weak var p2Name: UILabel!
     @IBOutlet weak var pLabel: UILabel!
     @IBOutlet weak var aiScore: UILabel!
     var playerName:String!
+    var player2Name:String!
+    var isTwo=false;
     //@IBOutlet weak var pName: UILabel!
     //@IBOutlet weak var pScore: UILabel!
     
@@ -72,8 +75,8 @@ class ViewController: UIViewController {
 //        }
         game.reset()
         //cScore and pScore are backwards because of wrong story board layout
-        playerScore.text="\(cScore)"
-        aiScore.text="\(pScore)"
+       // playerScore.text="\(cScore)"
+        //aiScore.text="\(pScore)"
         
         ob1.image=UIImage(named: "Black_square")
         
@@ -96,6 +99,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         pLabel.text = playerName
+        if(isTwo==true){
+            p2Name.text=player2Name
+        }
+        
         ob1.image=UIImage(named: "Black_square")
         
 
@@ -260,15 +267,39 @@ class ViewController: UIViewController {
         
         var tappedImage=tap.view as! UIImageView
         if(game.isAvail(num:tappedImage.tag)==true){
-            tappedImage.image=UIImage(named:"x")
-            //print(tappedImage.tag)
-            game.pChoice(num: tappedImage.tag)
+            if(pturn==1){
+                tappedImage.image=UIImage(named:"x")
+                //print(tappedImage.tag)
+                game.pChoice(num: tappedImage.tag,turn:pturn)
+                if(isTwo==true){
+                    pturn=2
+                }
+            }
+            else{
+                tappedImage.image=UIImage(named:"o")
+                //print(tappedImage.tag)
+                game.pChoice(num: tappedImage.tag,turn:pturn)
+                if(isTwo==true){
+                    pturn=1
+                }
+            }
+            if(isTwo==false){
+                currMove=game.bestMove()
+               // print(currMove)
+                moveC(move:currMove)
+            }
             
-            currMove=game.bestMove()
-           // print(currMove)
-            moveC(move:currMove)
 
         }
+        if(game.checkWin(board: game.board)==1){
+            pScore+=1
+            playerScore.text="\(pScore)"
+        }
+        else if(game.checkWin(board: game.board)==2){
+            cScore+=1
+            aiScore.text="\(cScore)"
+        }
+        print("winner \(game.checkWin(board: game.board))")
         
         
     }
