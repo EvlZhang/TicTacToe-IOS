@@ -66,17 +66,11 @@ class ViewController: UIViewController {
     //@IBOutlet weak var pScore: UILabel!
     
     //@IBOutlet weak var cScore: UILabel!
+    //reset button for the game
     @IBAction func reset(_ sender: Any) {
-//        if(game.winner==1){
-//            pScore+=1
-//        }
-//        else if(game.winner == 2){
-//            cScore+=1
-//        }
+
         game.reset()
-        //cScore and pScore are backwards because of wrong story board layout
-       // playerScore.text="\(cScore)"
-        //aiScore.text="\(pScore)"
+
         
         ob1.image=UIImage(named: "Black_square")
         
@@ -138,7 +132,7 @@ class ViewController: UIViewController {
          col1=UIStackView()
          col2=UIStackView()
          col3=UIStackView()
-        
+        //manage the tapping on the buttons
         createTap(on: ob1, type: .one)
         createTap(on: ob2, type: .two)
         createTap(on: ob3, type: .three)
